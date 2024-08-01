@@ -3,25 +3,9 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
-    // const [restInfo, setRestInfo] = useState(null);
-
     const {restId} = useParams();
 
     const restInfo = useRestaurantMenu(restId);
-    
-    // useEffect(()=>{
-    //     fetchMenu();
-    // },[]);
-
-    // const fetchMenu = async () => {
-
-    //     const response = await fetch(MENU_URL+restId);
-    
-    //     const json = await response.json();
-
-    //     setRestInfo(json?.data);
-        
-    // }
 
     if(restInfo === null){return <Shimmer/>}
 
@@ -30,9 +14,9 @@ const RestaurantMenu = () => {
     const { itemCards } = restInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[7]?.card?.card;
 
     return (
-        <div className="menu">
-            <h1>{name}</h1>
-            <p>{cuisines.join(", ")} - {costForTwoMessage}</p>
+        <div  className="text-center">
+            <h1 className="font-bold my-6 text-2xl">{name}</h1>
+            <p className="font-bold text-lg">{cuisines.join(", ")} - {costForTwoMessage}</p>
             <h4>Menu</h4>
             <ul>
                 {/* {itemCards.map((item) =>(
