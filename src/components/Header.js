@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constant";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
 
     const [btnName , setBtnName] = useState("Login");
+
+    const { loggedInUser } = useContext(UserContext);
+    console.log(loggedInUser);
+  
 
     const onlineStatus = useOnlineStatus();
     
@@ -20,18 +25,32 @@ const Header = () => {
                         Online Status: {onlineStatus ? "✅" : "🔴"}
                     </li>
                     <li className="px-4">
-                        <Link style={{ textDecoration: 'none' , color: 'black'}} to="/">Home</Link>
+                        <Link style={{ textDecoration: 'none' , color: 'black'}} 
+                            to="/">
+                            Home
+                        </Link>
                     </li>
                     <li className="px-4">
-                        <Link style={{ textDecoration: 'none' , color: 'black'}} to="/about">About Us</Link>
+                        <Link style={{ textDecoration: 'none' , color: 'black'}} 
+                            to="/about">
+                            About Us
+                        </Link>
                     </li>
                     <li className="px-4">
-                        <Link style={{ textDecoration: 'none' , color: 'black'}} to="/contact">Contact Us</Link>
+                        <Link style={{ textDecoration: 'none' , color: 'black'}} 
+                            to="/contact">
+                            Contact Us
+                        </Link>
                     </li>
                     <li className="px-4">
-                        <Link style={{ textDecoration: 'none' , color: 'black'}} to="/grocery">Grocery</Link>
+                        <Link style={{ textDecoration: 'none' , color: 'black'}} 
+                            to="/grocery">
+                            Grocery
+                        </Link>
                     </li>
-                    <li className="px-4 font-bold text-xl">Cart</li>
+                    <li className="px-4 font-bold text-xl">
+                        Cart
+                    </li>
 
                     <button className="login"
                         onClick={
@@ -43,7 +62,7 @@ const Header = () => {
                         {btnName}
                     </button>
 
-                    <li className="px-4 ">loggedInUser</li>
+                    <li className="px-4 ">{loggedInUser}</li>
                 </ul>
             </div>
         </div>
