@@ -1,12 +1,15 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import About from "./components/About";
 import Body from "./components/Body";
+import Cart from "./components/Cart";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Header from "./components/Header";
 import RestaurantMenu from "./components/RestaurantMenu";
+import appStore from "./utils/appStore";
 import UserContext from "./utils/UserContext";
 
 // Chunking
@@ -32,14 +35,14 @@ const AppLayout = () => {
 
 
     return (
-        // <Provider>
+        <Provider store={appStore}>
             <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
                 <div className="app">
                     <Header />
                     <Outlet />
                 </div>
             </UserContext.Provider>
-        // </Provider>
+        </Provider>
     )
 }
 
@@ -67,6 +70,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restaurant/:restId",
                 element: <RestaurantMenu />
+            },
+            {
+                path: "/cart",
+                element: <Cart />
             },
         ],
         errorElement: <Error />,

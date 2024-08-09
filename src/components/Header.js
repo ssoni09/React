@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constant";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -11,6 +12,8 @@ const Header = () => {
     const { loggedInUser } = useContext(UserContext);
     console.log(loggedInUser);
   
+    const cartItems = useSelector((store) => store.cart.items);
+    console.log(cartItems);
 
     const onlineStatus = useOnlineStatus();
     
@@ -49,7 +52,10 @@ const Header = () => {
                         </Link>
                     </li>
                     <li className="px-4 font-bold text-xl">
-                        Cart
+                        <Link style={{ textDecoration: 'none' , color: 'black'}} 
+                            to="/cart">
+                                Cart ({cartItems.length} Items)
+                        </Link>
                     </li>
 
                     <button className="login"
