@@ -14,7 +14,9 @@ const RestaurantCard = (props) => {
 
     const {loggedInUser} = useContext(UserContext);
     return (
-        <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-150 hover:bg-gray-400">
+        <div
+        data-testid="resCard"
+        className="m-4 p-4 w-[250px] rounded-lg bg-gray-150 hover:bg-gray-400">
             <img
                 className="rounded-lg"
                 alt="res-logo"
